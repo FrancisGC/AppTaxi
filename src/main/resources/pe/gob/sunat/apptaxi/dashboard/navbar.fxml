@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <FontIcon iconColor="#4c4c4c" iconLiteral="bi-list" iconSize="20" layoutX="13.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="14.5" AnchorPane.rightAnchor="10.5" AnchorPane.topAnchor="15.0" />
+    <VBox layoutX="13.0" layoutY="211.0">
+        <FontIcon fill="#ffcd07" iconLiteral="bi-house-door-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" />
+        <FontIcon iconLiteral="bi-list-ul" iconSize="20" layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt">
+            <VBox.margin>
+                <Insets top="15.0" />
+            </VBox.margin>
+        </FontIcon>
+        <FontIcon iconLiteral="bi-card-image" iconSize="20" layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt">
+            <VBox.margin>
+                <Insets top="15.0" />
+            </VBox.margin>
+        </FontIcon>
+        <FontIcon iconLiteral="bi-gear-fill" iconSize="20" layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt">
+            <VBox.margin>
+                <Insets top="15.0" />
+            </VBox.margin>
+        </FontIcon>
+        <Separator>
+            <VBox.margin>
+                <Insets bottom="15.0" top="15.0" />
+            </VBox.margin>
+        </Separator>
+        <FontIcon iconColor="#4c4c4c" iconLiteral="bi-door-open-fill" iconSize="20" layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+    </VBox>
+   <FontIcon iconLiteral="bi-person-circle" iconSize="20" layoutX="13.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+</AnchorPane>

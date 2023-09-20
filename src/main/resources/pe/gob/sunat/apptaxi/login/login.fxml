@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.gob.sunat.apptaxi.controller.LoginController">
+    <Pane prefHeight="590.0" prefWidth="800.0">
+        <Label layoutX="159.0" layoutY="121.0" text="Login" textFill="#070707">
+            <font>
+                <Font name="Gabriola" size="40.0" />
+            </font>
+        </Label>
+        <Label layoutX="115.0" layoutY="170.0" text="Su cuenta está segura" textFill="#868484">
+            <font>
+                <Font name="Gabriola" size="24.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="290.0" fitWidth="213.0" layoutX="88.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+            <Image url="@../image/user-interface.png" />
+        </ImageView>
+        <ImageView fitHeight="103.0" fitWidth="121.0" layoutX="573.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../image/parada-de-taxi.png" />
+        </ImageView>
+        <Label layoutX="562.0" layoutY="180.0" text="AppTaxi " textFill="#070707">
+            <font>
+                <Font name="Calibri" size="36.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER_RIGHT" layoutX="495.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;">
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+            <TextField fx:id="txtUsuario" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="220.0" promptText="Ingrese su Usuario" style="-fx-background-color: transparent;" />
+            <FontIcon iconColor="#e0e0e0" iconLiteral="bi-person-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" />
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" layoutX="495.0" layoutY="318.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;">
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+            <PasswordField fx:id="txtPassword" prefHeight="35.0" prefWidth="220.0" promptText="Ingrese su Contraseña" style="-fx-background-color: transparent;" />
+            <FontIcon iconColor="#e0e0e0" iconLiteral="bi-lock-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" />
+        </HBox>
+        <Label layoutX="495.0" layoutY="364.0" text="Olvido su contraseña?" textFill="#898989">
+            <font>
+                <Font name="Calibri" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="690.0" layoutY="364.0" text="Registrarse" textFill="#6d4394">
+            <font>
+                <Font name="Calibri Bold" size="14.0" />
+            </font>
+        </Label>
+        <JFXButton layoutX="495.0" layoutY="432.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#autentificacionUsuario" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: #FFCD07; -fx-background-radius: 50px;" text="INGRESAR">
+            <font>
+                <Font name="Calibri" size="12.0" />
+            </font>
+        </JFXButton>
+    </Pane>
+</AnchorPane>
