@@ -12,7 +12,7 @@ import java.util.Objects;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("dashboard/dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("AppTaxi");
         stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("image/parada-de-taxi.png"))));
