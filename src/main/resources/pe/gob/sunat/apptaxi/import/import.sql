@@ -15,3 +15,20 @@ CREATE TABLE USUARIOS
         primary key (ID)
 );
 
+CREATE TABLE VEHICULO (
+	idvehiculo int auto_increment NOT NULL,
+	modelo varchar(100) NULL,
+	color varchar(100) NULL,
+	anio varchar(100) NULL,
+	numplaca varchar(100) NULL,
+	CONSTRAINT vehiculo_pk PRIMARY KEY (idvehiculo)
+);
+
+CREATE TABLE CLIENTES (
+	idcliente int auto_increment NOT NULL,
+	nombres varchar(100) NULL,
+	apellidos varchar(100) NULL,
+	email varchar(100) NULL,
+	telefono varchar(100) NULL,
+	CONSTRAINT cliente_pk PRIMARY KEY (idcliente)
+);
