@@ -59,8 +59,8 @@ public class ClienteDaoImpl implements IClienteDao {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getLong(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6)));
+                clientes.add(new Cliente(0L, rs.getString(2),
+                        rs.getString(3), rs.getString(4),rs.getString(5) ));
             }
 
         } catch (SQLException se) {
@@ -100,9 +100,8 @@ public class ClienteDaoImpl implements IClienteDao {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                cliente = new Cliente(rs.getLong(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5),
-                        rs.getString(6));
+                cliente = new Cliente(0L, rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5));
             }
         } catch (SQLException se) {
             System.out.println(se.getMessage());

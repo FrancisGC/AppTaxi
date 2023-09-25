@@ -10,14 +10,14 @@ public class Cliente {
     private String telefono;
 
     // Constructor
-    public Cliente(long id, String nombre, String apellido, String email, String telefono, String string4) {
-        this.idCliente = id;
+    public Cliente(long par, String nombre, String apellido, String email, String telefono) {
+        //this.idCliente = id;
         this.nombres = nombre;
         this.apellidos = apellido;
         this.email = email;
         this.telefono = telefono;
     }
-
+ 
     // Métodos getters y setters para acceder a los atributos
     public Long getId() {
         return idCliente;

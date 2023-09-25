@@ -2,6 +2,8 @@
 package pe.gob.sunat.apptaxi.model.dao;
 
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import pe.gob.sunat.apptaxi.model.entities.Cliente;
 
 public interface IClienteDao {
@@ -11,4 +13,6 @@ public interface IClienteDao {
     Integer deleteById(Long id);
     Cliente findById(Long id);
     List<Cliente> findAll(); 
+    public ObservableList<Cliente> CLIENTELIST = FXCollections.observableArrayList();
+    
 }
