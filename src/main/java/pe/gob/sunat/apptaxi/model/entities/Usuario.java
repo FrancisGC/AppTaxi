@@ -11,6 +11,7 @@ public class Usuario {
     private String nombres;
     private Integer estado;
     private Date fechaRegistro;
+    private static Usuario instance;
 
     public Usuario() {
     }
@@ -32,6 +33,25 @@ public class Usuario {
         this.nombres = nombres;
         this.estado = estado;
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public static Usuario getInstance(Usuario usuario) {
+        if (instance == null) {
+            instance = new Usuario(
+                    usuario.getId(),
+                    usuario.getNumero(),
+                    "",
+                    usuario.getPerfil(),
+                    usuario.getApellidos(),
+                    usuario.getNombres(),
+                    usuario.getEstado(),
+                    usuario.getFechaRegistro()
+            );
+        }
+        return instance;
+    }
+    public static Usuario getInstance() {
+        return instance;
     }
 
     public Long getId() {
@@ -96,5 +116,19 @@ public class Usuario {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", numero='" + numero + '\'' +
+                ", password='" + password + '\'' +
+                ", perfil=" + perfil +
+                ", apellidos='" + apellidos + '\'' +
+                ", nombres='" + nombres + '\'' +
+                ", estado=" + estado +
+                ", fechaRegistro=" + fechaRegistro +
+                '}';
     }
 }

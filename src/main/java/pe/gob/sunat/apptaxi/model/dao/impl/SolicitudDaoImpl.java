@@ -55,7 +55,7 @@ public class SolicitudDaoImpl implements ISolicitudDao {
 
         try {
 
-            String sql = "SELECT ID, ORIGEN, DESTINO, PRECIO, ESTADO, ID_USUARIO, FEC_REGISTRO FROM SOLICITUD WHERE ID_USUARIO = ? ORDER BY ESTADO DESC, FEC_REGISTRO DESC";
+            String sql = "SELECT ID, ORIGEN, DESTINO, PRECIO, ESTADO, ID_USUARIO, FEC_REGISTRO FROM SOLICITUD WHERE ID_USUARIO = ? ORDER BY ESTADO ASC, FEC_REGISTRO DESC";
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, idUser);
 
@@ -136,13 +136,12 @@ public class SolicitudDaoImpl implements ISolicitudDao {
         int response = 0;
 
         try {
-            String sql = "UPDATE SOLICITUD SET ORIGEN = ?, DESTINO = ?, PRECIO = ?, ESTADO = ? WHERE ID = ?";
+            String sql = "UPDATE SOLICITUD SET ORIGEN = ?, DESTINO = ?, PRECIO = ? WHERE ID = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, solicitud.getOrigen());
             pstmt.setString(2, solicitud.getDestino());
             pstmt.setDouble(3, solicitud.getPrecio());
-            pstmt.setInt(4, solicitud.getEstado());
-            pstmt.setLong(5, solicitud.getId());
+            pstmt.setLong(4, solicitud.getId());
 
             response = pstmt.executeUpdate();
         } catch (SQLException se) {
@@ -164,7 +163,33 @@ public class SolicitudDaoImpl implements ISolicitudDao {
     }
 
     @Override
-    public Integer delete(Long id) {
-        return null;
+    public Integer cancelById(Long id) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.getConexion();
+        PreparedStatement pstmt = null;
+        int response = 0;
+
+        try {
+            String sql = "UPDATE SOLICITUD SET ESTADO = " + EstadoSolicitudEnum.CANCELADO.getValor() + " WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, id);
+
+            response = pstmt.executeUpdate();
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        return response;
     }
 }

@@ -17,7 +17,7 @@ public enum EstadoSolicitudEnum {
     }
 
     public static String getStringValueFromInt(int i) {
-        for (EstadoEnum estado : EstadoEnum.values()) {
+        for (EstadoSolicitudEnum estado : EstadoSolicitudEnum.values()) {
             if (estado.getValor() == i) {
                 return estado.toString();
             }

@@ -88,7 +88,7 @@ public class UsuarioDaoImpl implements IUsuarioDao {
     }
 
     @Override
-    public Usuario findById(Long id) {
+    public Usuario findBynumber(String number) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
@@ -97,9 +97,9 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
         try {
 
-            String sql = "SELECT ID, NUMERO, PASSWORD, PERFIL, APELLIDOS, NOMBRES, ESTADO, FECHA_REGISTRO FROM USUARIOS WHERE ID = ? AND ESTADO = 1";
+            String sql = "SELECT ID, NUMERO, PASSWORD, PERFIL, APELLIDOS, NOMBRES, ESTADO, FECHA_REGISTRO FROM USUARIOS WHERE NUMERO = ? AND ESTADO = 1";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setLong(1, id);
+            pstmt.setString(1, number);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {

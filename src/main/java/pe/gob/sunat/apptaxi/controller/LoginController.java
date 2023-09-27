@@ -15,6 +15,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import pe.gob.sunat.apptaxi.App;
 import pe.gob.sunat.apptaxi.model.dao.IUsuarioDao;
 import pe.gob.sunat.apptaxi.model.dao.impl.UsuarioDaoImpl;
+import pe.gob.sunat.apptaxi.model.entities.Usuario;
 import pe.gob.sunat.apptaxi.util.Alertas;
 
 import java.io.IOException;
@@ -65,6 +66,7 @@ public class LoginController implements Initializable {
             String pswHash = usuarioDao.findPasswordByNumber(txtUsuario.getText());
             if (!pswHash.isEmpty()) {
                 if (BCrypt.checkpw(txtPassword.getText(), pswHash)) {
+                    Usuario.getInstance(usuarioDao.findBynumber(txtUsuario.getText()));
                     FXMLLoader loader = App.getFXMLLoader("dashboard/dashboard");
                     Parent dashboard = loader.load();
                     App.scene.setRoot(dashboard);

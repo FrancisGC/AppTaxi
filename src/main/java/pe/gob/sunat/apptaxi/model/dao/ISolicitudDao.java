@@ -10,5 +10,5 @@ public interface ISolicitudDao {
     List<Solicitud> findAllByUser(Long idUser);
     Solicitud findById(Long id);
     Integer update(Solicitud solicitud);
-    Integer delete(Long id);
+    Integer cancelById(Long id);
 }
