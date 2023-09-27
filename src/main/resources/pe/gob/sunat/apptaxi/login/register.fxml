@@ -49,12 +49,12 @@
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNumero" layoutX="493.0" layoutY="154.0" prefHeight="30.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;" />
-      <TextField fx:id="txtApellidos" layoutX="493.0" layoutY="204.0" prefHeight="30.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;" />
-      <TextField fx:id="txtNombres" layoutX="493.0" layoutY="254.0" prefHeight="30.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;" />
-      <PasswordField fx:id="txtPassword" layoutX="493.0" layoutY="304.0" prefHeight="30.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;" />
-      <PasswordField fx:id="txtConfirmPassword" layoutX="493.0" layoutY="354.0" prefHeight="30.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;" />
+      <TextField fx:id="txtNumero" layoutX="493.0" layoutY="154.0" prefHeight="30.0" prefWidth="233.0" styleClass="filed-text-custom" stylesheets="@../css/Stylesheet.css" />
+      <TextField fx:id="txtApellidos" layoutX="493.0" layoutY="204.0" prefHeight="30.0" prefWidth="233.0" styleClass="filed-text-custom" />
+      <TextField fx:id="txtNombres" layoutX="493.0" layoutY="254.0" prefHeight="30.0" prefWidth="233.0" styleClass="filed-text-custom" />
+      <PasswordField fx:id="txtPassword" layoutX="493.0" layoutY="304.0" prefHeight="30.0" prefWidth="233.0" styleClass="filed-text-custom" />
+      <PasswordField fx:id="txtConfirmPassword" layoutX="493.0" layoutY="354.0" prefHeight="30.0" prefWidth="233.0" styleClass="filed-text-custom" />
       <JFXButton layoutX="536.0" layoutY="485.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #FFCD07; -fx-background-radius: 50px;" text="Registrarse" />
-      <ComboBox fx:id="cmbPerfil" layoutX="493.0" layoutY="404.0" prefHeight="30.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-border-color: #E1E1E1; -fx-border-radius: 50px;" />
+      <ComboBox fx:id="cmbPerfil" layoutX="493.0" layoutY="404.0" prefHeight="30.0" prefWidth="233.0" styleClass="filed-text-custom" />
    </children>
 </AnchorPane>

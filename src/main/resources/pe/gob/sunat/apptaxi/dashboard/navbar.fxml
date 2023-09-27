@@ -15,12 +15,12 @@
          <graphic>
               <FontIcon fill="#ffcd07" iconLiteral="bi-house-door-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic></Button>
-      <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <Button mnemonicParsing="false" onAction="#mostrarSolicitud" style="-fx-background-color: transparent;">
          <VBox.margin>
             <Insets top="15.0" />
          </VBox.margin>
          <graphic>
-              <FontIcon iconLiteral="bi-list-ul" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
+              <FontIcon iconLiteral="bi-map-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
          </graphic></Button>
       <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
          <graphic>

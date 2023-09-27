@@ -70,7 +70,7 @@ public class LoginController implements Initializable {
                     App.scene.setRoot(dashboard);
                     Window window = App.scene.getWindow();
                     window.setWidth(1024);
-                    window.setHeight(600);
+                    window.setHeight(650);
                 } else {
                     Alertas.mostrarAlertas(null, "Usuario o contraseña incorrecto", Alert.AlertType.WARNING);
                 }

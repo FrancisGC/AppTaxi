@@ -14,3 +14,33 @@
     -fx-background-color: #fff;
     -fx-background-radius: 0px 0px 15px 15px;
 }
+.filed-text-custom {
+    -fx-background-color: transparent;
+    -fx-border-color:  #E1E1E1;
+    -fx-border-radius: 50px
+}
+.button-custom {
+    -fx-background-color: #E7E7E7F7;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #4a4a4a;
+}
+
+.button-custom:hover {
+    -fx-background-color: #FFCD07;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #fff;
+}
+
+
+.button-custom-cancelar {
+    -fx-background-color: #E7E7E7F7;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #4a4a4a;
+}
+
+.button-custom-cancelar:hover {
+    -fx-background-color: #9d0702;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #fff;
+}
+
