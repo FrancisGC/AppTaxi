@@ -21,6 +21,6 @@ public enum PerfilEnum {
             }
         }
 
-        throw new IllegalArgumentException("el numero dado no se encontro.");
+        throw new IllegalArgumentException("El número dado no se encontró.");
     }
 }

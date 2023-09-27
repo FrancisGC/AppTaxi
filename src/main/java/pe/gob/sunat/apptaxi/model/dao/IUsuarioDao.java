@@ -10,6 +10,7 @@ public interface IUsuarioDao {
     Usuario findById(Long id);
     Integer update(Usuario usuario);
     Integer deleteById(Long id);
-    Integer findUserByUsuarioPassword(String numero, String password);
+    String findPasswordByNumber(String numero);
+    Integer findNumber(String numero);
 
 }

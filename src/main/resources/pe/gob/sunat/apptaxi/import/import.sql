@@ -2,7 +2,7 @@ CREATE TABLE USUARIOS
 (
     ID             int auto_increment,
     NUMERO         VARCHAR(12)  null,
-    PASSWORD       VARCHAR(50)  null,
+    PASSWORD       VARCHAR(250)  null,
     PERFIL         int          null comment '-- 1 - ADMIN
 -- 2 - CONDUCTOR
 -- 3 - USUARIO',

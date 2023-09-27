@@ -50,15 +50,15 @@
                 <Font name="Calibri" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="690.0" layoutY="364.0" text="Registrarse" textFill="#6d4394">
-            <font>
-                <Font name="Calibri Bold" size="14.0" />
-            </font>
-        </Label>
-        <JFXButton layoutX="495.0" layoutY="432.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#autentificacionUsuario" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: #FFCD07; -fx-background-radius: 50px;" text="INGRESAR">
+        <JFXButton fx:id="btnIngresar" layoutX="495.0" layoutY="432.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#autentificacionUsuario" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: #FFCD07; -fx-background-radius: 50px;" text="INGRESAR">
             <font>
                 <Font name="Calibri" size="12.0" />
             </font>
         </JFXButton>
+      <Button layoutX="672.0" layoutY="359.0" mnemonicParsing="false" onAction="#registrarUsuario" style="-fx-background-color: transparent;" text="Registrarse" textFill="#6d4394">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Button>
     </Pane>
 </AnchorPane>

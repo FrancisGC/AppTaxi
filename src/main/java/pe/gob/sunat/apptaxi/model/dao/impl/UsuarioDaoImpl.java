@@ -1,5 +1,6 @@
 package pe.gob.sunat.apptaxi.model.dao.impl;
 
+import pe.gob.sunat.apptaxi.controller.enums.EstadoEnum;
 import pe.gob.sunat.apptaxi.model.dao.IUsuarioDao;
 import pe.gob.sunat.apptaxi.model.entities.Usuario;
 import pe.gob.sunat.apptaxi.model.entities.util.Conexion;
@@ -19,14 +20,13 @@ public class UsuarioDaoImpl implements IUsuarioDao {
         PreparedStatement pstmt = null;
         int response = 0;
         try {
-            String sql = "INSERT INTO USUARIOS(NUMERO, PASSWORD, PERFIL, APELLIDOS, NOMBRES, ESTADO, FECHA_REGISTRO) VALUE (?, ?, ?, ?, ?, ?, SYSDATE())";
+            String sql = "INSERT INTO USUARIOS(NUMERO, PASSWORD, PERFIL, APELLIDOS, NOMBRES, ESTADO, FECHA_REGISTRO) VALUE (?, ?, ?, ?, ?, " + EstadoEnum.ACTIVO.getValor() + ", SYSDATE())";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, usuario.getNumero());
             pstmt.setString(2, usuario.getPassword());
             pstmt.setInt(3, usuario.getPerfil());
             pstmt.setString(4, usuario.getApellidos());
             pstmt.setString(5, usuario.getNombres());
-            pstmt.setInt(6, usuario.getEstado());
 
             response = pstmt.executeUpdate();
         } catch (SQLException se) {
@@ -196,7 +196,46 @@ public class UsuarioDaoImpl implements IUsuarioDao {
     }
 
     @Override
-    public Integer findUserByUsuarioPassword(String numero, String password) {
+    public String findPasswordByNumber(String numero) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.getConexion();
+        PreparedStatement pstmt = null;
+        String response = " ";
+        ResultSet rs = null;
+
+        try {
+
+            String sql = "SELECT PASSWORD FROM USUARIOS WHERE NUMERO = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, numero);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                response = rs.getString(1);
+            }
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        return response;
+    }
+
+    @Override
+    public Integer findNumber(String numero) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
@@ -205,10 +244,9 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
         try {
 
-            String sql = "SELECT EXISTS(SELECT NUMERO FROM USUARIOS WHERE NUMERO = ? AND PASSWORD = ?)";
+            String sql = "SELECT EXISTS(SELECT NUMERO FROM USUARIOS WHERE NUMERO = ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, numero);
-            pstmt.setString(1, password);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {

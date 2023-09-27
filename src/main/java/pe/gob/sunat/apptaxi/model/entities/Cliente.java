@@ -11,7 +11,7 @@ public class Cliente {
 
     // Constructor
     public Cliente(long par, String nombre, String apellido, String email, String telefono) {
-        //this.idCliente = id;
+        this.idCliente = par;
         this.nombres = nombre;
         this.apellidos = apellido;
         this.email = email;

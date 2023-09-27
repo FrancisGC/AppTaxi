@@ -15,6 +15,14 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String numero, String password, Integer perfil, String apellidos, String nombres) {
+        this.numero = numero;
+        this.password = password;
+        this.perfil = perfil;
+        this.apellidos = apellidos;
+        this.nombres = nombres;
+    }
+
     public Usuario(Long id, String numero, String password, Integer perfil, String apellidos, String nombres, Integer estado, Date fechaRegistro) {
         this.id = id;
         this.numero = numero;
