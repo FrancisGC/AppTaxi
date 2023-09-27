@@ -9,15 +9,19 @@ public class Vehiculo {
     private int anio;
     private String numPlaca;
     private double precio;
+    private Long idUsuario;
 
-    public Vehiculo(Long idVehiculo, String modelo, String color, int anio, String numPlaca, double precio) {
+    public Vehiculo(long idVehiculo, String modelo, String color, int anio, String numPlaca, long precio) {
         this.idVehiculo = idVehiculo;
         this.modelo = modelo;
         this.color = color;
         this.anio = anio;
         this.numPlaca = numPlaca;
         this.precio = precio;
+        this.idUsuario = idUsuario;
     }
+
+   
 
     public Long getIdVehiculo() {
         return idVehiculo;
@@ -67,9 +71,18 @@ public class Vehiculo {
         this.precio = precio;
     }
 
+    public Long getIdUusario() {
+        return idUsuario;
+    }
+
+    public void setIdUusario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     @Override
     public String toString() {
-        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", modelo=" + modelo + ", color=" + color + ", anio=" + anio + ", numPlaca=" + numPlaca + ", precio=" + precio + '}';
+        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", modelo=" + modelo + ", color=" + color + ", anio=" + anio + ", numPlaca=" + numPlaca + ", precio=" + precio + ", idUusario=" + idUsuario + '}';
     }
-    
+
+   
 }

@@ -1,6 +1,5 @@
 package pe.gob.sunat.apptaxi.model.dao.impl;
 
-import pe.gob.sunat.apptaxi.model.entities.Cliente;
 import pe.gob.sunat.apptaxi.model.entities.util.Conexion;
 
 import java.sql.Connection;
@@ -9,22 +8,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import pe.gob.sunat.apptaxi.model.dao.IClienteDao;
+import pe.gob.sunat.apptaxi.model.dao.IVehiculoDao;
+import pe.gob.sunat.apptaxi.model.entities.Vehiculo;
 
-public class ClienteDaoImpl implements IClienteDao {
+public class VehiculoDaoImpl implements IVehiculoDao {
     @Override
-    public Integer save(Cliente cliente) {
+    public Integer save(Vehiculo vehiculo) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
         int response = 0;
         try {
-            String sql = "INSERT INTO CLIENTES (NOMBRES, APELLIDOS, EMAIL, TELEFONO) VALUE (?, ?, ?, ?) ";
+            String sql = "INSERT INTO VEHICULO (MODELO, COLOR, ANIO, NUM_PLACA,ID_USUARIO) VALUE (?, ?, ?, ?. ?) ";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, cliente.getNombre());
-            pstmt.setString(2, cliente.getApellido());
-            pstmt.setString(3, cliente.getEmail());
-            pstmt.setString(4, cliente.getTelefono());
+            pstmt.setString(1, vehiculo.getModelo());
+            pstmt.setString(2, vehiculo.getColor());
+            pstmt.setInt(3, vehiculo.getAnio());
+            pstmt.setString(4, vehiculo.getNumPlaca());
+            pstmt.setLong(5, vehiculo.getIdUusario());
             
             response = pstmt.executeUpdate();
         } catch (SQLException se) {
@@ -45,22 +46,22 @@ public class ClienteDaoImpl implements IClienteDao {
     }
 
     @Override
-    public List<Cliente> findAll() {
+    public List<Vehiculo> findAll() {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
-        List<Cliente> clientes = new ArrayList<>();
+        List<Vehiculo> vehiculos = new ArrayList<>();
         ResultSet rs = null;
 
         try {
 
-            String sql = "SELECT IDCLIENTE, APELLIDOS, NOMBRES, EMAIL, TELEFONO FROM CLIENTES ";
+            String sql = "SELECT IDVEHICULO, MODELO, COLOR, ANIO, NUM_PLACA, ID_USUARIO FROM VEHICULO ";
             pstmt = conn.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                clientes.add(new Cliente(0L, rs.getString(2),
-                        rs.getString(3), rs.getString(4),rs.getString(5) ));
+                vehiculos.add(new Vehiculo(0L, rs.getString(2),
+                        rs.getString(3), rs.getInt(4),rs.getString(5),rs.getLong(6)));
             }
 
         } catch (SQLException se) {
@@ -81,27 +82,27 @@ public class ClienteDaoImpl implements IClienteDao {
             }
         }
 
-        return clientes;
+        return vehiculos;
     }
 
     @Override
-    public Cliente findById(Long id) {
+    public Vehiculo findById(Long id) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
-        Cliente cliente = null;
+        Vehiculo vehiculo = null;
         ResultSet rs = null;
 
         try {
 
-            String sql = "SELECT IDCLIENTE,  APELLIDOS, NOMBRES, EMAIL, TELEFONO FROM CLIENTES WHERE IDCLIENTE = ? ";
+            String sql = "SELECT IDVEHICULO,  MODELO, COLOR, ANIO, NUM_PLACA, IDUSUARIO FROM VEHICULO WHERE IDVEHICULO= ? ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                cliente = new Cliente(0L, rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5));
+                vehiculo = new Vehiculo(0L, rs.getString(2), rs.getString(3),
+                        rs.getInt(4), rs.getString(5), rs.getLong(6));
             }
         } catch (SQLException se) {
             System.out.println(se.getMessage());
@@ -121,24 +122,24 @@ public class ClienteDaoImpl implements IClienteDao {
             }
         }
 
-        return cliente;
+        return vehiculo;
     }
 
     @Override
-    public Integer update(Cliente cliente) {
+    public Integer update(Vehiculo vehiculo) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
         int response = 0;
 
         try {
-            String sql = "UPDATE CLIENTES SET  APELLIDOS = ?, NOMBRES = ?, EMAIL = ?, TELEFONO= ? WHERE IDCLIENTE = ?";
+            String sql = "UPDATE VECHICULO SET  MODELO = ?, COLOR = ?, ANIO = ?, NUM_PLACA = ?, IDUSUARIO = ? WHERE IDVEHICULO = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, cliente.getApellido());
-            pstmt.setString(2, cliente.getNombre());
-            pstmt.setString(3, cliente.getEmail());
-            pstmt.setString(4,cliente.getTelefono());
-            pstmt.setLong(5, cliente.getId());
+            pstmt.setString(1, vehiculo.getModelo());
+            pstmt.setString(2, vehiculo.getColor());
+            pstmt.setInt(3, vehiculo.getAnio());
+            pstmt.setString(4,vehiculo.getNumPlaca());
+            pstmt.setLong(5, vehiculo.getIdUusario());
 
             response = pstmt.executeUpdate();
         } catch (SQLException se) {

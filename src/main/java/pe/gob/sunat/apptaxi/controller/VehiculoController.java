@@ -20,33 +20,40 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pe.gob.sunat.apptaxi.model.dao.IClienteDao;
+import pe.gob.sunat.apptaxi.model.dao.IVehiculoDao;
 import pe.gob.sunat.apptaxi.model.dao.impl.ClienteDaoImpl;
-import pe.gob.sunat.apptaxi.model.entities.Cliente;
+import pe.gob.sunat.apptaxi.model.dao.impl.VehiculoDaoImpl;
+import pe.gob.sunat.apptaxi.model.entities.Vehiculo;
 
-public class ClienteController {
+public class VehiculoController {
     //Columnas
     @FXML
-    private TableColumn<Cliente, String> clmnNombre;
+    private TableColumn<Vehiculo, String> clmnModelo;
     @FXML
-    private TableColumn<Cliente, String> clmnApellido;
+    private TableColumn<Vehiculo, String> clmnColor;
     @FXML
-    private TableColumn<Cliente, String> clmnEmail;
+    private TableColumn<Vehiculo, Number> clmnAnio;
     @FXML
-    private TableColumn<Cliente, String> clmnTelefono;
+    private TableColumn<Vehiculo, String> clmnNumPlaca;
+    @FXML
+    private TableColumn<Vehiculo, Number> clmnIdUsuario;
 
     //Componentes GUI
     @FXML
-    private TextField txtIdCliente;
+    private TextField txtIdVehiculo;
     @FXML
-    private TextField txtNombre;
+    private TextField txtModelo;
     @FXML
-    private TextField txtApellido;
+    private TextField txtColor;
     @FXML
-    private TextField txtEmail;
+    private TextField txtAnio;
+       @FXML
+    private TextField txtNumPlaca;
+    @FXML
+    private TextField txtIdUsuario;
+  
     //@FXML private RadioButton rbtFemenino;
     //@FXML private RadioButton rbtMasculino;
-    @FXML
-    private TextField txtTelefono;
 
     @FXML
     private Button btnGuardar;
@@ -57,22 +64,22 @@ public class ClienteController {
 
 
     @FXML
-    private TableView<Cliente> tblViewClientes;
+    private TableView<Vehiculo> tblViewVehiculos;
 
     //Colecciones
-    private ObservableList<Cliente> listaClientes;
-    private Cliente clienteActual = new Cliente(0L, "", "", "", "");
+    private ObservableList<Vehiculo> listaVehiculos;
+   // private Cliente clienteActual = new Cliente(0L, "", "", "", "");
 
     public void initialize(URL location, ResourceBundle resources) {
 
         //Inicializar listas
 
-        listaClientes = FXCollections.observableArrayList();
+        listaVehiculos = FXCollections.observableArrayList();
 
         //Llenar listas
         //Cliente.llenarInformacionClientes(conexion.getConnection(), listaClientes);
-        IClienteDao clienteDao = new ClienteDaoImpl();
-        listaClientes.addAll(clienteDao.findAll());
+        IVehiculoDao clienteDao = new VehiculoDaoImpl();
+        listaVehiculos.addAll(clienteDao.findAll());
                 /*
                  if (!CLIENTELIST.isEmpty()) {
                     CLIENTELIST.clear();
@@ -80,30 +87,31 @@ public class ClienteController {
                 CLIENTELIST.addAll(clienteDao.findAll());
 */
         //Enlazar listas con ComboBox y TableView
-        tblViewClientes.setItems(listaClientes);
+        tblViewVehiculos.setItems(listaVehiculos);
 
         //Enlazar columnas con atributos
-        clmnNombre.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nombre"));
-        clmnApellido.setCellValueFactory(new PropertyValueFactory<Cliente, String>("apellido"));
-        clmnEmail.setCellValueFactory(new PropertyValueFactory<Cliente, String>("email"));
-        clmnTelefono.setCellValueFactory(new PropertyValueFactory<Cliente, String>("telefono"));
-
+        clmnModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        clmnColor.setCellValueFactory(new PropertyValueFactory<>("color"));
+        clmnAnio.setCellValueFactory(new PropertyValueFactory<>("anio"));
+        clmnNumPlaca.setCellValueFactory(new PropertyValueFactory<>("numPlaca"));
+        clmnIdUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+        
         gestionarEventos();
 
     }
 
     public void gestionarEventos() {
-        tblViewClientes.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Cliente>() {
+        tblViewVehiculos.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Vehiculo>() {
                     @Override
-                    public void changed(ObservableValue<? extends Cliente> arg0,
-                                        Cliente valorAnterior, Cliente valorSeleccionado) {
+                    public void changed(ObservableValue<? extends Vehiculo> arg0,
+                                        Vehiculo valorAnterior, Vehiculo valorSeleccionado) {
                         if (valorSeleccionado != null) {
-                            txtIdCliente.setText(String.valueOf(valorSeleccionado.getId()));
-                            txtNombre.setText(valorSeleccionado.getNombre());
-                            txtApellido.setText(valorSeleccionado.getApellido());
-                            txtEmail.setText(String.valueOf(valorSeleccionado.getEmail()));
-                            txtTelefono.setText(String.valueOf(valorSeleccionado.getTelefono()));
+                            txtIdVehiculo.setText(String.valueOf(valorSeleccionado.getIdVehiculo()));
+                            txtModelo.setText(valorSeleccionado.getModelo());
+                            txtColor.setText(valorSeleccionado.getColor());
+                            txtNumPlaca.setText(String.valueOf(valorSeleccionado.getNumPlaca()));
+                            txtIdUsuario.setText(String.valueOf(valorSeleccionado.getIdUusario()));
 
 
                             btnGuardar.setDisable(true);
@@ -119,37 +127,33 @@ public class ClienteController {
     @FXML
     public void guardarRegistro(ActionEvent event) {
         //Crear una nueva instancia del tipo Cliente
-        Cliente cli = new Cliente(0L,
-                txtNombre.getText(),
-                txtApellido.getText(),
-                txtEmail.getText(),
-                txtTelefono.getText());
+        Vehiculo ve = new Vehiculo(0L,
+                txtModelo.getText(),
+                txtColor.getText(),
+                Integer.parseInt(txtAnio.getText()),
+                txtNumPlaca.getText(),
+                Long.parseLong(txtIdUsuario.getText()));
 
-        if (cli.getId() == 0L) {
-            if (cli.getNombre().isEmpty()) {
-                mostrarAlertas("Warning", "Ingrese nombres", Alert.AlertType.WARNING);
+        if (ve.getIdVehiculo()== 0L) {
+            if (ve.getModelo().isEmpty()) {
+                mostrarAlertas("Warning", "Ingrese Modelo", Alert.AlertType.WARNING);
                 return;
             }
 
-            if (cli.getApellido().isEmpty()) {
-                mostrarAlertas("Warning", "Ingrese Apellidos", Alert.AlertType.WARNING);
+            if (ve.getColor().isEmpty()) {
+                mostrarAlertas("Warning", "Ingrese Color", Alert.AlertType.WARNING);
                 return;
             }
 
-            if (cli.getEmail().isEmpty()) {
-                mostrarAlertas("Warning", "Ingrese Correo", Alert.AlertType.WARNING);
-                return;
-            }
-
-            if (cli.getTelefono().isEmpty()) {
-                mostrarAlertas("Warning", "Ingrese Telefono", Alert.AlertType.WARNING);
+            if (ve.getNumPlaca().isEmpty()) {
+                mostrarAlertas("Warning", "Ingrese Nro Placa", Alert.AlertType.WARNING);
                 return;
             }
             //Llamar al metodo guardarRegistro de la clase Alumno
 
-            IClienteDao clienteDao = new ClienteDaoImpl();
+            IVehiculoDao vehiculoDao = new VehiculoDaoImpl();
 
-            int resultado = clienteDao.save(cli);
+            int resultado = vehiculoDao.save(ve);
 //            listaClientes.clear();
 //            listaClientes.addAll(clienteDao.findAll());
 
@@ -168,21 +172,22 @@ public class ClienteController {
 
     @FXML
     public void actualizarRegistro(ActionEvent event) throws Exception {
-        Cliente a = new Cliente(
-                Integer.valueOf(txtIdCliente.getText()),
-                txtNombre.getText(),
-                txtApellido.getText(),
-                txtEmail.getText(),
-                txtTelefono.getText());
+        Vehiculo a = new Vehiculo(
+                Long.parseLong(txtIdVehiculo.getText()),
+                txtModelo.getText(),
+                txtColor.getText(),
+                Integer.parseInt(txtAnio.getText()),
+                txtNumPlaca.getText(),
+                Long.parseLong(txtIdUsuario.getText()));
 
-        IClienteDao clienteDao = new ClienteDaoImpl();
+        IVehiculoDao vehiculoDao = new VehiculoDaoImpl();
 
         //conexion.establecerConexion();
-        int resultado = clienteDao.update(a);
+        int resultado = vehiculoDao.update(a);
         //conexion.cerrarConexion();
 
         if (resultado == 1) {
-            listaClientes.set(tblViewClientes.getSelectionModel().getSelectedIndex(), a);
+            listaVehiculos.set(tblViewVehiculos.getSelectionModel().getSelectedIndex(), a);
             //JDK 8u>40
             Alert mensaje = new Alert(AlertType.INFORMATION);
             mensaje.setTitle("Registro actualizado");
@@ -205,23 +210,23 @@ public class ClienteController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            Cliente selectedCliente = tblViewClientes.getSelectionModel().getSelectedItem();
+            Vehiculo selectedVehiculo = tblViewVehiculos.getSelectionModel().getSelectedItem();
             IClienteDao clienteDao = new ClienteDaoImpl();
-            clienteDao.deleteById(selectedCliente.getId());
-            listaClientes.remove(selectedCliente);
+            clienteDao.deleteById(selectedVehiculo.getIdVehiculo());
+            listaVehiculos.remove(selectedVehiculo);
         }
 
-        tblViewClientes.getSelectionModel().clearSelection();
+        tblViewVehiculos.getSelectionModel().clearSelection();
 
     }
 
     @FXML
     public void limpiarComponentes() {
-        txtIdCliente.setText(null);
-        txtNombre.setText(null);
-        txtApellido.setText(null);
-        txtEmail.setText(null);
-        txtTelefono.setText(null);
+        txtIdVehiculo.setText(null);
+        txtModelo.setText(null);
+        txtAnio.setText(null);
+        txtNumPlaca.setText(null);
+        clmnIdUsuario.setText(null);
 
 
         btnGuardar.setDisable(false);
