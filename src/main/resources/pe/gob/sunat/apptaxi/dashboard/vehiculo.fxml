@@ -58,11 +58,11 @@
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="txtCodigo" disable="true" GridPane.columnIndex="1" />
-                        <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="txtApellido" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtModelo" disable="true" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtColor" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtAnio" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtNumPlaca" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtIdUsuario" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                       </children>
                   </GridPane>
                   <HBox layoutX="14.0" layoutY="292.0" prefHeight="33.0" prefWidth="315.0" spacing="5.0">
