@@ -83,10 +83,10 @@ public class ClienteController {
         tblViewClientes.setItems(listaClientes);
 
         //Enlazar columnas con atributos
-        clmnNombre.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nombre"));
-        clmnApellido.setCellValueFactory(new PropertyValueFactory<Cliente, String>("apellido"));
-        clmnEmail.setCellValueFactory(new PropertyValueFactory<Cliente, String>("email"));
-        clmnTelefono.setCellValueFactory(new PropertyValueFactory<Cliente, String>("telefono"));
+        clmnNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        clmnApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        clmnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        clmnTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
 
         gestionarEventos();
 
@@ -150,8 +150,8 @@ public class ClienteController {
             IClienteDao clienteDao = new ClienteDaoImpl();
 
             int resultado = clienteDao.save(cli);
-            listaClientes.clear();
-            listaClientes.addAll(clienteDao.findAll());
+            //listaClientes.clear();
+            //listaClientes.addAll(clienteDao.findAll());
 
 
             if (resultado == 1) {
@@ -163,13 +163,15 @@ public class ClienteController {
                 mensaje.setHeaderText("Resultado:");
                 mensaje.show();
             }
+             //listaClientes.clear();
+            listaClientes.addAll(clienteDao.findAll());
         }
     }
 
     @FXML
     public void actualizarRegistro(ActionEvent event) throws Exception {
         Cliente a = new Cliente(
-                Integer.valueOf(txtIdCliente.getText()),
+                Long.parseLong(txtIdCliente.getText()),
                 txtNombre.getText(),
                 txtApellido.getText(),
                 txtEmail.getText(),

@@ -11,14 +11,13 @@ public class Vehiculo {
     private double precio;
     private Long idUsuario;
 
-    public Vehiculo(long idVehiculo, String modelo, String color, int anio, String numPlaca, long precio) {
+    public Vehiculo(long idVehiculo, String modelo, String color, int anio, String numPlaca, long idUsuario) {
         this.idVehiculo = idVehiculo;
         this.modelo = modelo;
         this.color = color;
         this.anio = anio;
         this.numPlaca = numPlaca;
-        this.precio = precio;
-        this.idUsuario = idUsuario;
+       this.idUsuario = idUsuario;
     }
 
    

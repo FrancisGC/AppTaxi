@@ -19,7 +19,7 @@ public class VehiculoDaoImpl implements IVehiculoDao {
         PreparedStatement pstmt = null;
         int response = 0;
         try {
-            String sql = "INSERT INTO VEHICULO (MODELO, COLOR, ANIO, NUM_PLACA,ID_USUARIO) VALUE (?, ?, ?, ?. ?) ";
+            String sql = "INSERT INTO VEHICULO (MODELO, COLOR, ANIO, NUM_PLACA,ID_USUARIO) VALUE (?, ?, ?, ?, ?) ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, vehiculo.getModelo());
             pstmt.setString(2, vehiculo.getColor());

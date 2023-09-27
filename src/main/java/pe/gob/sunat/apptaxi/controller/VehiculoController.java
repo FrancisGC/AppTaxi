@@ -9,6 +9,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -47,7 +49,7 @@ public class VehiculoController {
     private TextField txtColor;
     @FXML
     private TextField txtAnio;
-       @FXML
+    @FXML
     private TextField txtNumPlaca;
     @FXML
     private TextField txtIdUsuario;
@@ -99,7 +101,8 @@ public class VehiculoController {
         gestionarEventos();
 
     }
-
+    
+    
     public void gestionarEventos() {
         tblViewVehiculos.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<Vehiculo>() {
@@ -110,7 +113,8 @@ public class VehiculoController {
                             txtIdVehiculo.setText(String.valueOf(valorSeleccionado.getIdVehiculo()));
                             txtModelo.setText(valorSeleccionado.getModelo());
                             txtColor.setText(valorSeleccionado.getColor());
-                            txtNumPlaca.setText(String.valueOf(valorSeleccionado.getNumPlaca()));
+                            txtAnio.setText(String.valueOf(valorSeleccionado.getAnio()));
+                            txtNumPlaca.setText(valorSeleccionado.getNumPlaca());
                             txtIdUsuario.setText(String.valueOf(valorSeleccionado.getIdUusario()));
 
 
@@ -154,8 +158,7 @@ public class VehiculoController {
             IVehiculoDao vehiculoDao = new VehiculoDaoImpl();
 
             int resultado = vehiculoDao.save(ve);
-//            listaClientes.clear();
-//            listaClientes.addAll(clienteDao.findAll());
+
 
 
             if (resultado == 1) {
@@ -166,6 +169,9 @@ public class VehiculoController {
                 mensaje.setContentText("El registro ha sido agregado exitosamente");
                 mensaje.setHeaderText("Resultado:");
                 mensaje.show();
+                
+                //            listaVehiculos.clear();
+            listaVehiculos.addAll(vehiculoDao.findAll());
             }
         }
     }
@@ -241,5 +247,6 @@ public class VehiculoController {
         dialogo.setContentText(content);
         dialogo.show();
     }
+    
 
 }
