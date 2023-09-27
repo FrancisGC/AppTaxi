@@ -4,6 +4,7 @@ package pe.gob.sunat.apptaxi.model.entities;
 public class Vehiculo {
      // Atributos de la clase
     private Long idVehiculo;
+    private String marca;
     private String modelo;
     private String color;
     private int anio;
@@ -11,8 +12,9 @@ public class Vehiculo {
     private double precio;
     private Long idUsuario;
 
-    public Vehiculo(long idVehiculo, String modelo, String color, int anio, String numPlaca, long idUsuario) {
+    public Vehiculo(long idVehiculo, String marca, String modelo, String color, int anio, String numPlaca, long idUsuario) {
         this.idVehiculo = idVehiculo;
+        this.marca = marca;
         this.modelo = modelo;
         this.color = color;
         this.anio = anio;
@@ -28,6 +30,14 @@ public class Vehiculo {
 
     public void setIdVehiculo(Long idVehiculo) {
         this.idVehiculo = idVehiculo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getModelo() {
@@ -70,11 +80,11 @@ public class Vehiculo {
         this.precio = precio;
     }
 
-    public Long getIdUusario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUusario(Long idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

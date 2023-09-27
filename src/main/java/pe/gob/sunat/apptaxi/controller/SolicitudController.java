@@ -19,7 +19,6 @@ import pe.gob.sunat.apptaxi.util.Alertas;
 import pe.gob.sunat.apptaxi.util.Constants;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;

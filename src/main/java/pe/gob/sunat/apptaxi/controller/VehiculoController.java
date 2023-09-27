@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -21,13 +22,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.synedra.validatorfx.Validator;
 import pe.gob.sunat.apptaxi.model.dao.IClienteDao;
 import pe.gob.sunat.apptaxi.model.dao.IVehiculoDao;
 import pe.gob.sunat.apptaxi.model.dao.impl.ClienteDaoImpl;
 import pe.gob.sunat.apptaxi.model.dao.impl.VehiculoDaoImpl;
+import pe.gob.sunat.apptaxi.model.entities.Usuario;
 import pe.gob.sunat.apptaxi.model.entities.Vehiculo;
 
-public class VehiculoController {
+public class VehiculoController implements Initializable {
     //Columnas
     @FXML
     private TableColumn<Vehiculo, String> clmnModelo;
@@ -38,7 +41,7 @@ public class VehiculoController {
     @FXML
     private TableColumn<Vehiculo, String> clmnNumPlaca;
     @FXML
-    private TableColumn<Vehiculo, Number> clmnIdUsuario;
+    private TableColumn<Vehiculo, Number> clmnMarca;
 
     //Componentes GUI
     @FXML
@@ -52,8 +55,8 @@ public class VehiculoController {
     @FXML
     private TextField txtNumPlaca;
     @FXML
-    private TextField txtIdUsuario;
-  
+    private TextField txtMarca;
+
     //@FXML private RadioButton rbtFemenino;
     //@FXML private RadioButton rbtMasculino;
 
@@ -68,11 +71,15 @@ public class VehiculoController {
     @FXML
     private TableView<Vehiculo> tblViewVehiculos;
 
+    private final Validator validator = new Validator();
+
     //Colecciones
     private ObservableList<Vehiculo> listaVehiculos;
-   // private Cliente clienteActual = new Cliente(0L, "", "", "", "");
+    // private Cliente clienteActual = new Cliente(0L, "", "", "", "");
 
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.validaciones();
 
         //Inicializar listas
 
@@ -81,7 +88,7 @@ public class VehiculoController {
         //Llenar listas
         //Cliente.llenarInformacionClientes(conexion.getConnection(), listaClientes);
         IVehiculoDao clienteDao = new VehiculoDaoImpl();
-        listaVehiculos.addAll(clienteDao.findAll());
+        listaVehiculos.addAll(clienteDao.findAllById(Usuario.getInstance().getId()));
                 /*
                  if (!CLIENTELIST.isEmpty()) {
                     CLIENTELIST.clear();
@@ -92,17 +99,17 @@ public class VehiculoController {
         tblViewVehiculos.setItems(listaVehiculos);
 
         //Enlazar columnas con atributos
-        clmnModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-        clmnColor.setCellValueFactory(new PropertyValueFactory<>("color"));
-        clmnAnio.setCellValueFactory(new PropertyValueFactory<>("anio"));
-        clmnNumPlaca.setCellValueFactory(new PropertyValueFactory<>("numPlaca"));
-        clmnIdUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
-        
+//        clmnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+//        clmnModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+//        clmnColor.setCellValueFactory(new PropertyValueFactory<>("color"));
+//        clmnAnio.setCellValueFactory(new PropertyValueFactory<>("anio"));
+//        clmnNumPlaca.setCellValueFactory(new PropertyValueFactory<>("numPlaca"));
+
         gestionarEventos();
 
     }
-    
-    
+
+
     public void gestionarEventos() {
         tblViewVehiculos.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<Vehiculo>() {
@@ -115,8 +122,6 @@ public class VehiculoController {
                             txtColor.setText(valorSeleccionado.getColor());
                             txtAnio.setText(String.valueOf(valorSeleccionado.getAnio()));
                             txtNumPlaca.setText(valorSeleccionado.getNumPlaca());
-                            txtIdUsuario.setText(String.valueOf(valorSeleccionado.getIdUusario()));
-
 
                             btnGuardar.setDisable(true);
                             btnEliminar.setDisable(false);
@@ -131,34 +136,18 @@ public class VehiculoController {
     @FXML
     public void guardarRegistro(ActionEvent event) {
         //Crear una nueva instancia del tipo Cliente
-        Vehiculo ve = new Vehiculo(0L,
-                txtModelo.getText(),
-                txtColor.getText(),
-                Integer.parseInt(txtAnio.getText()),
-                txtNumPlaca.getText(),
-                Long.parseLong(txtIdUsuario.getText()));
-
-        if (ve.getIdVehiculo()== 0L) {
-            if (ve.getModelo().isEmpty()) {
-                mostrarAlertas("Warning", "Ingrese Modelo", Alert.AlertType.WARNING);
-                return;
-            }
-
-            if (ve.getColor().isEmpty()) {
-                mostrarAlertas("Warning", "Ingrese Color", Alert.AlertType.WARNING);
-                return;
-            }
-
-            if (ve.getNumPlaca().isEmpty()) {
-                mostrarAlertas("Warning", "Ingrese Nro Placa", Alert.AlertType.WARNING);
-                return;
-            }
-            //Llamar al metodo guardarRegistro de la clase Alumno
+        if (validator.validate()){
+            Vehiculo ve = new Vehiculo(0L,
+                    txtMarca.getText(),
+                    txtModelo.getText(),
+                    txtColor.getText(),
+                    Integer.parseInt(txtAnio.getText()),
+                    txtNumPlaca.getText(),
+                    Usuario.getInstance().getId());
 
             IVehiculoDao vehiculoDao = new VehiculoDaoImpl();
 
             int resultado = vehiculoDao.save(ve);
-
 
 
             if (resultado == 1) {
@@ -169,9 +158,9 @@ public class VehiculoController {
                 mensaje.setContentText("El registro ha sido agregado exitosamente");
                 mensaje.setHeaderText("Resultado:");
                 mensaje.show();
-                
+
                 //            listaVehiculos.clear();
-            listaVehiculos.addAll(vehiculoDao.findAll());
+                listaVehiculos.addAll(vehiculoDao.findAllById(Usuario.getInstance().getId()));
             }
         }
     }
@@ -180,11 +169,12 @@ public class VehiculoController {
     public void actualizarRegistro(ActionEvent event) throws Exception {
         Vehiculo a = new Vehiculo(
                 Long.parseLong(txtIdVehiculo.getText()),
+                txtMarca.getText(),
                 txtModelo.getText(),
                 txtColor.getText(),
                 Integer.parseInt(txtAnio.getText()),
                 txtNumPlaca.getText(),
-                Long.parseLong(txtIdUsuario.getText()));
+                Usuario.getInstance().getId());
 
         IVehiculoDao vehiculoDao = new VehiculoDaoImpl();
 
@@ -226,13 +216,60 @@ public class VehiculoController {
 
     }
 
+    private void validaciones() {
+        validator.createCheck()
+                .withMethod(c -> {
+                    String marca = c.get("marca");
+                    if (marca.isEmpty()) {
+                        c.error("Ingresar la marca");
+                    }
+                })
+                .dependsOn("marca", txtMarca.textProperty())
+                .decorates(txtMarca);
+
+        validator.createCheck()
+                .withMethod(c -> {
+                    String modelo = c.get("modelo");
+                    if (modelo.isEmpty()) {
+                        c.error("Ingresar el modelo");
+                    }
+                })
+                .dependsOn("modelo", txtModelo.textProperty())
+                .decorates(txtModelo);
+
+        validator.createCheck()
+                .withMethod(c -> {
+                    String color = c.get("color");
+                    if (color.isEmpty()) {
+                        c.error("Ingresar la marca");
+                    }
+                })
+                .dependsOn("color", txtColor.textProperty())
+                .decorates(txtColor);
+
+        validator.createCheck()
+                .withMethod(c -> {
+                    String anio = c.get("anio");
+                    if (anio.isEmpty()) {
+                        c.error("Ingresar el año");
+                    }
+                })
+                .dependsOn("anio", txtAnio.textProperty())
+                .decorates(txtAnio);
+
+        validator.createCheck()
+                .withMethod(c -> {
+                    String placa = c.get("placa");
+                    if (placa.isEmpty()) {
+                        c.error("Ingresar el número de placa");
+                    }
+                })
+                .dependsOn("placa", txtNumPlaca.textProperty())
+                .decorates(txtNumPlaca);
+    }
+
     @FXML
     public void limpiarComponentes() {
-        txtIdVehiculo.setText(null);
-        txtModelo.setText(null);
-        txtAnio.setText(null);
-        txtNumPlaca.setText(null);
-        clmnIdUsuario.setText(null);
 
 
         btnGuardar.setDisable(false);
@@ -240,13 +277,5 @@ public class VehiculoController {
         btnActualizar.setDisable(true);
     }
 
-
-    private void mostrarAlertas(String header, String content, Alert.AlertType type) {
-        Alert dialogo = new Alert(type);
-        dialogo.setHeaderText(header);
-        dialogo.setContentText(content);
-        dialogo.show();
-    }
-    
 
 }

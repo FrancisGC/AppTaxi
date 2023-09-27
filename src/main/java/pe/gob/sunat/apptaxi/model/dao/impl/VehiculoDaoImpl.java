@@ -1,5 +1,6 @@
 package pe.gob.sunat.apptaxi.model.dao.impl;
 
+import pe.gob.sunat.apptaxi.model.entities.Usuario;
 import pe.gob.sunat.apptaxi.model.entities.util.Conexion;
 
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import pe.gob.sunat.apptaxi.model.dao.IVehiculoDao;
 import pe.gob.sunat.apptaxi.model.entities.Vehiculo;
 
@@ -19,14 +21,15 @@ public class VehiculoDaoImpl implements IVehiculoDao {
         PreparedStatement pstmt = null;
         int response = 0;
         try {
-            String sql = "INSERT INTO VEHICULO (MODELO, COLOR, ANIO, NUM_PLACA,ID_USUARIO) VALUE (?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO VEHICULO (MARCA, MODELO, COLOR, ANIO, NUM_PLACA,ID_USUARIO) VALUE (?, ?, ?, ?, ?, ?) ";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, vehiculo.getModelo());
-            pstmt.setString(2, vehiculo.getColor());
-            pstmt.setInt(3, vehiculo.getAnio());
-            pstmt.setString(4, vehiculo.getNumPlaca());
-            pstmt.setLong(5, vehiculo.getIdUusario());
-            
+            pstmt.setString(1, vehiculo.getMarca());
+            pstmt.setString(2, vehiculo.getModelo());
+            pstmt.setString(3, vehiculo.getColor());
+            pstmt.setInt(4, vehiculo.getAnio());
+            pstmt.setString(5, vehiculo.getNumPlaca());
+            pstmt.setLong(6, Usuario.getInstance().getId());
+
             response = pstmt.executeUpdate();
         } catch (SQLException se) {
             System.out.println(se.getMessage());
@@ -46,7 +49,7 @@ public class VehiculoDaoImpl implements IVehiculoDao {
     }
 
     @Override
-    public List<Vehiculo> findAll() {
+    public List<Vehiculo> findAllById(Long id) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
@@ -55,13 +58,15 @@ public class VehiculoDaoImpl implements IVehiculoDao {
 
         try {
 
-            String sql = "SELECT IDVEHICULO, MODELO, COLOR, ANIO, NUM_PLACA, ID_USUARIO FROM VEHICULO ";
+            String sql = "SELECT ID, MARCA, MODELO, COLOR, ANIO, NUM_PLACA, ID_USUARIO FROM VEHICULO WHERE ID_USUARIO = ?";
             pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, id);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                vehiculos.add(new Vehiculo(0L, rs.getString(2),
-                        rs.getString(3), rs.getInt(4),rs.getString(5),rs.getLong(6)));
+                vehiculos.add(new Vehiculo(rs.getLong(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getInt(5),
+                        rs.getString(6),  rs.getLong(7)));
             }
 
         } catch (SQLException se) {
@@ -95,14 +100,15 @@ public class VehiculoDaoImpl implements IVehiculoDao {
 
         try {
 
-            String sql = "SELECT IDVEHICULO,  MODELO, COLOR, ANIO, NUM_PLACA, IDUSUARIO FROM VEHICULO WHERE IDVEHICULO= ? ";
+            String sql = "SELECT ID, MARCA, MODELO, COLOR, ANIO, NUM_PLACA, ID_USUARIO FROM VEHICULO WHERE ID= ? ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                vehiculo = new Vehiculo(0L, rs.getString(2), rs.getString(3),
-                        rs.getInt(4), rs.getString(5), rs.getLong(6));
+                vehiculo = new Vehiculo(rs.getLong(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getInt(5),
+                        rs.getString(6),  rs.getLong(7));
             }
         } catch (SQLException se) {
             System.out.println(se.getMessage());
@@ -133,13 +139,14 @@ public class VehiculoDaoImpl implements IVehiculoDao {
         int response = 0;
 
         try {
-            String sql = "UPDATE VECHICULO SET  MODELO = ?, COLOR = ?, ANIO = ?, NUM_PLACA = ?, IDUSUARIO = ? WHERE IDVEHICULO = ?";
+            String sql = "UPDATE VECHICULO SET MARCA = ?, MODELO = ?, COLOR = ?, ANIO = ?, NUM_PLACA = ? WHERE ID = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, vehiculo.getModelo());
-            pstmt.setString(2, vehiculo.getColor());
-            pstmt.setInt(3, vehiculo.getAnio());
-            pstmt.setString(4,vehiculo.getNumPlaca());
-            pstmt.setLong(5, vehiculo.getIdUusario());
+            pstmt.setString(1, vehiculo.getMarca());
+            pstmt.setString(2, vehiculo.getModelo());
+            pstmt.setString(3, vehiculo.getColor());
+            pstmt.setInt(4, vehiculo.getAnio());
+            pstmt.setString(5, vehiculo.getNumPlaca());
+            pstmt.setLong(5, vehiculo.getIdVehiculo());
 
             response = pstmt.executeUpdate();
         } catch (SQLException se) {
@@ -168,7 +175,7 @@ public class VehiculoDaoImpl implements IVehiculoDao {
         int response = 0;
 
         try {
-            String sql = "DELETE CLIENTES WHERE IDCLIENTE = ?";
+            String sql = "DELETE VECHICULO WHERE ID = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
 

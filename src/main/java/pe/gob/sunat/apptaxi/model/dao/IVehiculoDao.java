@@ -12,5 +12,5 @@ public interface IVehiculoDao {
     Integer update(Vehiculo vehiculo);
     Integer deleteById(Long id);
     Vehiculo findById(Long id);
-    List<Vehiculo> findAll(); 
+    List<Vehiculo> findAllById(Long id);
 }

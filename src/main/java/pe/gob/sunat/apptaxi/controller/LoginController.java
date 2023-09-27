@@ -54,9 +54,6 @@ public class LoginController implements Initializable {
                 })
                 .dependsOn("password", txtPassword.textProperty())
                 .decorates(txtPassword);
-
-        txtUsuario.setText("999955555");
-        txtPassword.setText("123123");
     }
 
     @FXML

@@ -93,7 +93,7 @@
                         <children>
                             <TableView fx:id="tblViewVehiculos" layoutX="2.0" layoutY="25.0" prefHeight="491.0" prefWidth="443.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="25.0">
                                 <columns>
-                           <TableColumn prefWidth="100.0" text="Marca" />
+                           <TableColumn fx:id="clmnMarca" prefWidth="100.0" text="Marca" />
                                     <TableColumn fx:id="clmnModelo" prefWidth="100.0" text="Modelo" />
                                     <TableColumn fx:id="clmnColor" prefWidth="100.0" text="Color" />
                                     <TableColumn fx:id="clmnAnio" prefWidth="50.0" text="Año" />
