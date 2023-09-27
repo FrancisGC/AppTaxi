@@ -150,8 +150,8 @@ public class ClienteController {
             IClienteDao clienteDao = new ClienteDaoImpl();
 
             int resultado = clienteDao.save(cli);
-//            listaClientes.clear();
-//            listaClientes.addAll(clienteDao.findAll());
+            listaClientes.clear();
+            listaClientes.addAll(clienteDao.findAll());
 
 
             if (resultado == 1) {
