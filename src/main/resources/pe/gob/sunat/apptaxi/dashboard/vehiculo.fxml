@@ -2,92 +2,108 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="358.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.gob.sunat.apptaxi.controller.VehiculoController">
-   <children>
-      <SplitPane dividerPositions="0.4101522842639594" layoutX="11.0" layoutY="21.0" prefHeight="358.0" prefWidth="987.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="401.0">
-               <children>
-                  <GridPane layoutX="14.0" layoutY="14.0" prefHeight="262.0" prefWidth="383.0">
-                    <columnConstraints>
-                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="133.0" />
-                      <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label text="Id:">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <Label text="Modelo:" GridPane.rowIndex="1">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <Label text="Color:" GridPane.rowIndex="2">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <Label text="Año:" GridPane.rowIndex="3">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <Label text="Nro. Placa:" GridPane.rowIndex="4">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <Label text="ID Usuario:" GridPane.rowIndex="5">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="txtId" disable="true" GridPane.columnIndex="1" />
-                        <TextField fx:id="txtModelo" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="txtColor" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtAnio" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="txtNumPlaca" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="txtIdUsuario" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                      </children>
-                  </GridPane>
-                  <HBox layoutX="14.0" layoutY="292.0" prefHeight="33.0" prefWidth="315.0" spacing="5.0">
-                     <children>
-                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarRegistro" text="Guardar" />
-                        <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarRegistro" text="Actualizar" />
-                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarRegistro" text="Eliminar" />
-                        <Button mnemonicParsing="false" onAction="#limpiarComponentes" text="Nuevo" />
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <TableView fx:id="tblViewVehiculos" layoutX="78.0" layoutY="25.0" prefHeight="356.0" prefWidth="555.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="clmnModelo" prefWidth="75.0" text="Modelo" />
-                      <TableColumn fx:id="clmnColor" prefWidth="75.0" text="Color" />
-                        <TableColumn fx:id="clmnAnio" prefWidth="75.0" text="Año" />
-                        <TableColumn fx:id="clmnNumPlaca" prefWidth="75.0" text="Nro. Placa" />
-                   </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
-</AnchorPane>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="1024.0" styleClass="parent" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.gob.sunat.apptaxi.controller.VehiculoController">
+    <left>
+        <fx:include source="navbar.fxml" />
+    </left>
+    <center>
+        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" style="-fx-background-color: #f3f3f3;" BorderPane.alignment="CENTER">
+            <fx:include source="head.fxml" />
+            <HBox layoutX="40.0" layoutY="60.0" prefHeight="530.0" prefWidth="800.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="60.0" />
+
+            <SplitPane dividerPositions="0.5" layoutX="38.0" layoutY="58.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFF; -fx-background-radius: 15px;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="60.0">
+                <items>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="401.0">
+                        <children>
+                            <GridPane layoutX="14.0" layoutY="78.0" prefHeight="267.0" prefWidth="383.0">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="97.0" />
+                                    <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="286.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                <children>
+                                    <Label text="Modelo" GridPane.rowIndex="1">
+                                        <padding>
+                                            <Insets right="5.0" />
+                                        </padding>
+                              <font>
+                                 <Font name="Calibri" size="14.0" />
+                              </font>
+                                    </Label>
+                                    <Label text="Color" GridPane.rowIndex="2">
+                                        <padding>
+                                            <Insets right="5.0" />
+                                        </padding>
+                              <font>
+                                 <Font name="Calibri" size="14.0" />
+                              </font>
+                                    </Label>
+                                    <Label text="Año" GridPane.rowIndex="3">
+                                        <padding>
+                                            <Insets right="5.0" />
+                                        </padding>
+                              <font>
+                                 <Font name="Calibri" size="14.0" />
+                              </font>
+                                    </Label>
+                                    <Label text="Nro. Placa" GridPane.rowIndex="4">
+                                        <padding>
+                                            <Insets right="5.0" />
+                                        </padding>
+                              <font>
+                                 <Font name="Calibri" size="14.0" />
+                              </font>
+                                    </Label>
+                                    <TextField fx:id="txtModelo" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="filed-text-custom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtColor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="filed-text-custom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtAnio" prefHeight="30.0" prefWidth="250.0" styleClass="filed-text-custom" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtNumPlaca" prefHeight="30.0" prefWidth="250.0" styleClass="filed-text-custom" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           <Label text="Marca">
+                              <font>
+                                 <Font name="Calibri" size="14.0" />
+                              </font></Label>
+                           <TextField fx:id="txtMarca" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="filed-text-custom" GridPane.columnIndex="1" />
+                                </children>
+                            </GridPane>
+                            <HBox layoutX="20.0" layoutY="359.0" prefHeight="52.0" prefWidth="407.0" spacing="5.0">
+                                <children>
+                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#limpiarComponentes" prefHeight="30.0" prefWidth="100.0" styleClass="button-custom" text="Nuevo" />
+                                    <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarRegistro" prefHeight="30.0" prefWidth="100.0" styleClass="button-custom" text="Guardar" />
+                                    <Button fx:id="btnActualizar" disable="true" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actualizarRegistro" prefHeight="30.0" prefWidth="100.0" styleClass="button-custom" text="Actualizar" />
+                                    <Button fx:id="btnEliminar" disable="true" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#eliminarRegistro" prefHeight="30.0" prefWidth="100.0" styleClass="button-custom" text="Eliminar" />
+                                </children>
+                            </HBox>
+                     <Label layoutX="14.0" layoutY="14.0" text="Vehículos" textFill="#5c6872">
+                        <font>
+                           <Font name="Calibri Bold" size="24.0" />
+                        </font></Label>
+                        </children>
+                    </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="460.0">
+                        <children>
+                            <TableView fx:id="tblViewVehiculos" layoutX="2.0" layoutY="25.0" prefHeight="491.0" prefWidth="443.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="25.0">
+                                <columns>
+                           <TableColumn prefWidth="100.0" text="Marca" />
+                                    <TableColumn fx:id="clmnModelo" prefWidth="100.0" text="Modelo" />
+                                    <TableColumn fx:id="clmnColor" prefWidth="100.0" text="Color" />
+                                    <TableColumn fx:id="clmnAnio" prefWidth="50.0" text="Año" />
+                                    <TableColumn fx:id="clmnNumPlaca" prefWidth="100.0" text="Nro. Placa" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </items>
+            </SplitPane>
+        </AnchorPane>
+    </center>
+</BorderPane>

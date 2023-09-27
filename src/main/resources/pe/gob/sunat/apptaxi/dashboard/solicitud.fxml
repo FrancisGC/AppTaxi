@@ -5,97 +5,127 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="1024.0" styleClass="parent" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.gob.sunat.apptaxi.controller.SolicitudController">
+<BorderPane prefHeight="600.0" prefWidth="1024.0" styleClass="parent" stylesheets="@../css/Stylesheet.css"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.gob.sunat.apptaxi.controller.SolicitudController">
     <left>
-        <fx:include source="navbar.fxml" />
+        <fx:include source="navbar.fxml"/>
     </left>
     <center>
-        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" style="-fx-background-color: #f3f3f3;" BorderPane.alignment="CENTER">
-            <fx:include source="head.fxml" />
-         <Pane layoutX="40.0" layoutY="72.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15px;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="60.0">
-            <children>
-               <Label layoutX="14.0" layoutY="14.0" text="Solicitudes" textFill="#5c6872">
-                  <font>
-                     <Font name="Calibri Bold" size="24.0" />
-                  </font>
-               </Label>
-               <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="42.0" prefHeight="200.0" prefWidth="800.0">
-                  <children>
-                     <GridPane prefHeight="196.0" prefWidth="502.0">
-                       <columnConstraints>
-                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="132.0" />
-                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="370.0" />
-                       </columnConstraints>
-                       <rowConstraints>
-                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                       </rowConstraints>
+        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0"
+                    style="-fx-background-color: #f3f3f3;" BorderPane.alignment="CENTER">
+            <fx:include source="head.fxml"/>
+            <Pane layoutX="40.0" layoutY="72.0" prefHeight="530.0" prefWidth="800.0"
+                  style="-fx-background-color: #FFFFFF; -fx-background-radius: 15px;" AnchorPane.leftAnchor="40.0"
+                  AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="60.0">
+                <children>
+                    <Label layoutX="14.0" layoutY="14.0" text="Solicitudes" textFill="#5c6872">
+                        <font>
+                            <Font name="Calibri Bold" size="24.0"/>
+                        </font>
+                    </Label>
+                    <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="42.0" prefHeight="200.0" prefWidth="800.0">
                         <children>
-                           <TextField fx:id="txtOrigen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" styleClass="filed-text-custom" GridPane.columnIndex="1" />
-                           <TextField fx:id="txtDestino" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" styleClass="filed-text-custom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                           <Label text="Origen">
-                              <font>
-                                 <Font name="Calibri" size="14.0" />
-                              </font>
-                           </Label>
-                           <Label text="Destino" GridPane.rowIndex="1">
-                              <font>
-                                 <Font name="Calibri" size="14.0" />
-                              </font>
-                           </Label>
-                           <Label text="Precio" GridPane.rowIndex="2">
-                              <font>
-                                 <Font name="Calibri" size="14.0" />
-                              </font>
-                           </Label>
-                           <TextField fx:id="txtPrecio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" styleClass="filed-text-custom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            <GridPane prefHeight="196.0" prefWidth="502.0">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="207.0"
+                                                       minWidth="10.0" prefWidth="132.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0"
+                                                       prefWidth="370.0"/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                </rowConstraints>
+                                <children>
+                                    <TextField fx:id="txtOrigen" maxHeight="-Infinity" maxWidth="-Infinity"
+                                               minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0"
+                                               prefWidth="350.0" styleClass="filed-text-custom"
+                                               GridPane.columnIndex="1"/>
+                                    <TextField fx:id="txtDestino" maxHeight="-Infinity" maxWidth="-Infinity"
+                                               minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0"
+                                               prefWidth="350.0" styleClass="filed-text-custom" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="1"/>
+                                    <Label text="Origen">
+                                        <font>
+                                            <Font name="Calibri" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                    <Label text="Destino" GridPane.rowIndex="1">
+                                        <font>
+                                            <Font name="Calibri" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                    <Label text="Precio" GridPane.rowIndex="2">
+                                        <font>
+                                            <Font name="Calibri" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="txtPrecio" maxHeight="-Infinity" maxWidth="-Infinity"
+                                               minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0"
+                                               prefWidth="350.0" styleClass="filed-text-custom" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="2"/>
+                                </children>
+                            </GridPane>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="155.0" prefWidth="9.0">
+                                <HBox.margin>
+                                    <Insets left="30.0" right="30.0"/>
+                                </HBox.margin>
+                            </Separator>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevaSolicitud"
+                                            prefHeight="30.0" prefWidth="150.0" styleClass="button-custom" text="Nuevo">
+                                        <VBox.margin>
+                                            <Insets top="15.0"/>
+                                        </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#limpiar"
+                                            prefHeight="30.0" prefWidth="150.0" styleClass="button-custom"
+                                            text="Limpiar">
+                                        <VBox.margin>
+                                            <Insets top="15.0"/>
+                                        </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarSolicitud"
+                                            prefHeight="30.0" prefWidth="150.0" styleClass="button-custom"
+                                            text="Guardar">
+                                        <VBox.margin>
+                                            <Insets top="15.0"/>
+                                        </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarSolicitud"
+                                            prefHeight="30.0" prefWidth="150.0" styleClass="button-custom-cancelar"
+                                            text="Cancelar">
+                                        <VBox.margin>
+                                            <Insets top="15.0"/>
+                                        </VBox.margin>
+                                    </Button>
+                                </children>
+                                <opaqueInsets>
+                                    <Insets/>
+                                </opaqueInsets>
+                            </VBox>
                         </children>
-                     </GridPane>
-                     <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="155.0" prefWidth="9.0">
-                        <HBox.margin>
-                           <Insets left="30.0" right="30.0" />
-                        </HBox.margin>
-                     </Separator>
-                     <VBox prefHeight="200.0" prefWidth="100.0">
+                    </HBox>
+                    <HBox layoutX="14.0" layoutY="256.0" prefHeight="260.0">
                         <children>
-                           <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevaSolicitud" prefHeight="30.0" prefWidth="150.0" styleClass="button-custom" text="Nuevo">
-                              <VBox.margin>
-                                 <Insets top="15.0" />
-                              </VBox.margin></Button>
-                           <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#limpiar" prefHeight="30.0" prefWidth="150.0" styleClass="button-custom" text="Limpiar">
-                              <VBox.margin>
-                                 <Insets top="15.0" />
-                              </VBox.margin></Button>
-                           <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarSolicitud" prefHeight="30.0" prefWidth="150.0" styleClass="button-custom" text="Guardar">
-                              <VBox.margin>
-                                 <Insets top="15.0" />
-                              </VBox.margin></Button>
-                           <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarSolicitud" prefHeight="30.0" prefWidth="150.0" styleClass="button-custom-cancelar" text="Cancelar">
-                              <VBox.margin>
-                                 <Insets top="15.0" />
-                              </VBox.margin></Button>
+                            <TableView fx:id="tableSolicitud" prefHeight="239.0">
+                                <columns>
+                                    <TableColumn fx:id="columnId" prefWidth="75.0" text="id" visible="false"/>
+                                    <TableColumn fx:id="columnOrigen" prefWidth="250.0" text="Origen"/>
+                                    <TableColumn fx:id="columnDestino" minWidth="0.0" prefWidth="250.0" text="Destino"/>
+                                    <TableColumn fx:id="columnPrecio" text="Precio"/>
+                                    <TableColumn fx:id="columnEstado" text="Estado"/>
+                                </columns>
+                            </TableView>
+                            <ScrollBar orientation="VERTICAL"/>
                         </children>
-                        <opaqueInsets>
-                           <Insets />
-                        </opaqueInsets></VBox>
-                  </children>
-               </HBox>
-               <HBox layoutX="14.0" layoutY="256.0" prefHeight="260.0">
-                  <children>
-                     <TableView fx:id="tableSolicitud" prefHeight="239.0">
-                       <columns>
-                           <TableColumn fx:id="columnId" prefWidth="75.0" text="id" visible="false" />
-                         <TableColumn fx:id="columnOrigen" prefWidth="250.0" text="Origen" />
-                         <TableColumn fx:id="columnDestino" minWidth="0.0" prefWidth="250.0" text="Destino" />
-                           <TableColumn fx:id="columnPrecio" text="Precio" />
-                           <TableColumn fx:id="columnEstado" text="Estado" />
-                       </columns>
-                     </TableView>
-                     <ScrollBar orientation="VERTICAL" />
-                  </children>
-               </HBox>
-            </children></Pane>
+                    </HBox>
+                </children>
+            </Pane>
         </AnchorPane>
     </center>
 </BorderPane>

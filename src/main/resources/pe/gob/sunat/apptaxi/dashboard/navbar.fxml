@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.gob.sunat.apptaxi.controller.MenuController">
     <FontIcon iconColor="#4c4c4c" iconLiteral="bi-list" iconSize="20" layoutX="13.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="14.5" AnchorPane.rightAnchor="10.5" AnchorPane.topAnchor="15.0" />
     <VBox layoutX="5.0" layoutY="184.0">
-      <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <Button mnemonicParsing="false" onAction="#mostrarDashboard" style="-fx-background-color: transparent;">
          <VBox.margin>
             <Insets top="15.0" />
          </VBox.margin>
@@ -20,17 +20,17 @@
             <Insets top="15.0" />
          </VBox.margin>
          <graphic>
-              <FontIcon iconLiteral="bi-map-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
+              <FontIcon iconLiteral="bi-geo-alt-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
          </graphic></Button>
-      <Button mnemonicParsing="false"  onAction="#mostrarVehiculo" style="-fx-background-color: transparent;">
+      <Button mnemonicParsing="false" onAction="#mostrarVehiculo" style="-fx-background-color: transparent;">
          <graphic>
-              <FontIcon iconLiteral="bi-card-image" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
+              <FontIcon iconLiteral="bi-card-heading" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
          </graphic>
          <VBox.margin>
             <Insets top="15.0" />
          </VBox.margin>
       </Button>
-      <Button mnemonicParsing="false"  onAction="#mostrarVehiculo" style="-fx-background-color: transparent;">
+      <Button mnemonicParsing="false" onAction="#mostrarVehiculo" style="-fx-background-color: transparent;">
          <graphic>
               <FontIcon iconLiteral="bi-gear-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
          </graphic>

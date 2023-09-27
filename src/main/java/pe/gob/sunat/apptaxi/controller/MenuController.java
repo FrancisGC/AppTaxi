@@ -30,6 +30,12 @@ public class MenuController {
         Parent dashboard = App.loadFXML("dashboard/vehiculo");
         App.scene.setRoot(dashboard);
     }
+
+     @FXML
+    public void mostrarDashboard(ActionEvent event) throws IOException {
+        Parent dashboard = App.loadFXML("dashboard/dashboard");
+        App.scene.setRoot(dashboard);
+    }
     
        @FXML
     public void mostrarCliente(ActionEvent event) throws IOException {

@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS USUARIOS
 CREATE TABLE IF NOT EXISTS VEHICULO
 (
     ID         int auto_increment NOT NULL,
+    MARCA      varchar(100)       NULL,
     MODELO     varchar(100)       NULL,
     COLOR      varchar(100)       NULL,
     ANIO       varchar(100)       NULL,
