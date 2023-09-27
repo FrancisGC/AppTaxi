@@ -11,7 +11,7 @@ public class MenuController {
 
     @FXML
     public void salirPrograma(ActionEvent actionEvent) {
-        Alertas.mostrarAlertas("Salir", "Se está cerrando el programa", Alert.AlertType.INFORMATION);
+        Alertas.mostrarAlertas("Se está cerrando el programa", null, Alert.AlertType.INFORMATION);
         Stage stage = (Stage) App.scene.getWindow();
         stage.close();
     }

@@ -1,8 +1,10 @@
-CREATE TABLE USUARIOS
+CREATE DATABASE IF NOT EXISTS APP_TAXI_DB;
+
+CREATE TABLE IF NOT EXISTS USUARIOS
 (
     ID             int auto_increment,
     NUMERO         VARCHAR(12)  null,
-    PASSWORD       VARCHAR(250)  null,
+    PASSWORD       VARCHAR(250) null,
     PERFIL         int          null comment '-- 1 - ADMIN
 -- 2 - CONDUCTOR
 -- 3 - USUARIO',
@@ -15,20 +17,54 @@ CREATE TABLE USUARIOS
         primary key (ID)
 );
 
-CREATE TABLE VEHICULO (
-	idvehiculo int auto_increment NOT NULL,
-	modelo varchar(100) NULL,
-	color varchar(100) NULL,
-	anio varchar(100) NULL,
-	numplaca varchar(100) NULL,
-	CONSTRAINT vehiculo_pk PRIMARY KEY (idvehiculo)
+
+CREATE TABLE IF NOT EXISTS VEHICULO
+(
+    ID         int auto_increment NOT NULL,
+    MODELO     varchar(100)       NULL,
+    COLOR      varchar(100)       NULL,
+    ANIO       varchar(100)       NULL,
+    NUM_PLACA  varchar(100)       NULL,
+    ID_USUARIO int                NOT NULL,
+    CONSTRAINT vehiculo_pk PRIMARY KEY (id),
+    CONSTRAINT FOREIGN KEY (ID_USUARIO) REFERENCES USUARIOS(ID)
 );
 
-CREATE TABLE CLIENTES (
-	idcliente int auto_increment NOT NULL,
-	nombres varchar(100) NULL,
-	apellidos varchar(100) NULL,
-	email varchar(100) NULL,
-	telefono varchar(100) NULL,
-	CONSTRAINT cliente_pk PRIMARY KEY (idcliente)
+CREATE TABLE IF NOT EXISTS SOLICITUD
+(
+    ID int auto_increment not null,
+    ORIGEN  VARCHAR(250),
+    DESTINO VARCHAR(250),
+    PRECIO INT,
+    ESTADO INT,
+    ID_USUARIO INT COMMENT 'USUARIO DE PERFIL USUARIO',
+    FEC_REGISTRO DATETIME,
+    CONSTRAINT solicitud_pk PRIMARY KEY (id),
+    CONSTRAINT FOREIGN KEY (ID_USUARIO) REFERENCES USUARIOS(ID)
 );
+
+CREATE TABLE IF NOT EXISTS SERVICIO
+(
+    ID int auto_increment not null,
+    ID_SOLICITUD VARCHAR(250),
+    ID_USUARIO VARCHAR(250) COMMENT 'USUARIO DE PERFIL CONDUCTOR',
+    PRECIO INT,
+    ESTADO INT,
+    FEC_REGISTRO DATETIME,
+    CONSTRAINT solicitud_pk PRIMARY KEY (id),
+    CONSTRAINT FOREIGN KEY (ID_SOLICITUD) REFERENCES SOLICITUD(ID),
+    CONSTRAINT FOREIGN KEY (ID_USUARIO) REFERENCES USUARIOS(ID)
+);
+
+
+CREATE TABLE IF NOT EXISTS CLIENTES
+(
+    idcliente int auto_increment NOT NULL,
+    nombres   varchar(100)       NULL,
+    apellidos varchar(100)       NULL,
+    email     varchar(100)       NULL,
+    telefono  varchar(100)       NULL,
+    CONSTRAINT cliente_pk PRIMARY KEY (idcliente)
+);
+
+
