@@ -22,7 +22,7 @@
          <graphic>
               <FontIcon iconLiteral="bi-map-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
          </graphic></Button>
-      <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <Button mnemonicParsing="false"  onAction="#mostrarVehiculo" style="-fx-background-color: transparent;">
          <graphic>
               <FontIcon iconLiteral="bi-card-image" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
          </graphic>
@@ -30,7 +30,7 @@
             <Insets top="15.0" />
          </VBox.margin>
       </Button>
-      <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <Button mnemonicParsing="false"  onAction="#mostrarVehiculo" style="-fx-background-color: transparent;">
          <graphic>
               <FontIcon iconLiteral="bi-gear-fill" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sidebar_opt" />
          </graphic>
